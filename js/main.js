@@ -37,7 +37,7 @@ function initMobileNav() {
 // This is the project's public anon key, safe for client-side use
 // as long as Row Level Security policies are configured on web_leads.
 var SUPABASE_URL = "https://eihxkwbtjwzkadvjkxol.supabase.co/rest/v1/web_leads";
-var SUPABASE_ANON_KEY = "[SUPABASE_ANON_KEY]"; // <-- replace before deploy
+var SUPABASE_ANON_KEY = "sb_publishable_FWRT1cIb0mqMaMreuCPITg_vKhY5j_J"; // <-- replace before deploy
 
 function initLeadForm() {
   var form = document.getElementById("lead-form");
