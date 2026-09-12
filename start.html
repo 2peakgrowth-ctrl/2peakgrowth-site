@@ -1,154 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Get Started — 2Peak Growth</title>
-<meta name="description" content="Tell us about your business and we'll follow up within 24 hours about your Google review card or website." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get started with 2Peak Growth. Tell us about your business and we will be in touch within one business day.">
+  <title>Get Started — 2Peak Growth</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .start-hero {
+      padding: 140px 0 64px;
+      background: var(--navy-mid);
+      border-bottom: 1px solid var(--border);
+    }
+    .start-hero h1 {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      margin-bottom: 12px;
+    }
+    .start-hero p {
+      font-size: 16px;
+      color: var(--muted);
+    }
+    .start-body {
+      padding: 64px 0 96px;
+    }
+    .start-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 64px;
+      align-items: start;
+    }
+    /* ── Form styles ───────── */
+    .form-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .field:last-of-type { margin-bottom: 0; }
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    label .req { color: var(--blue-light); margin-left: 2px; }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 15px;
+      padding: 12px 16px;
+      width: 100%;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="email"]:focus {
+      border-color: var(--blue);
+    }
+    input::placeholder { color: var(--muted); }
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .radio-item:hover {
+      border-color: var(--blue);
+      background: var(--blue-glow);
+    }
+    .radio-item input[type="radio"] {
+      accent-color: var(--blue);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .radio-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .radio-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+    .submit-btn {
+      width: 100%;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px;
+      cursor: pointer;
+      margin-top: 32px;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: var(--blue-light); }
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .form-note {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 16px;
+    }
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-msg .icon { font-size: 48px; margin-bottom: 16px; }
+    .success-msg h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .success-msg p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+    /* ── Side info ─────────── */
+    .side-info { padding-top: 8px; }
+    .side-info h2 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .side-info p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+    .side-steps { display: flex; flex-direction: column; gap: 20px; }
+    .side-step { display: flex; gap: 16px; align-items: flex-start; }
+    .side-step-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--blue-glow);
+      border: 1px solid rgba(37,99,235,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .side-step-text { font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .side-step-text strong { color: var(--white); display: block; margin-bottom: 2px; }
+    @media (max-width: 768px) {
+      .start-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 28px; }
+      .side-info { order: -1; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container nav">
-    <a href="index.html" class="logo">2Peak <span>Growth</span></a>
-    <nav aria-label="Primary">
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="start.html" class="btn btn-primary nav-cta">Get Started</a>
-      </div>
-    </nav>
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">2<span>Peak</span> Growth</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="start.html" class="nav-cta">Get Started</a></li>
+    </ul>
+    <div class="nav-hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
-</header>
+</nav>
 
-<main>
-  <section class="form-page">
-    <div class="container">
-      <div class="form-wrap">
-        <div class="form-intro">
-          <span class="eyebrow">Get Started</span>
-          <h1 style="font-size:clamp(1.8rem, 4vw, 2.5rem);">Tell us about your business</h1>
-          <p>Fill this out and we'll be in touch within 24 hours to talk next steps.</p>
+<div class="start-hero">
+  <div class="container">
+    <div class="section-label">Get Started</div>
+    <h1>Tell us about your business</h1>
+    <p>We will be in touch within one business day.</p>
+  </div>
+</div>
+
+<section class="start-body">
+  <div class="container">
+    <div class="start-grid">
+
+      <!-- Form -->
+      <div class="form-card">
+        <div id="formWrap">
+          <div class="field">
+            <label for="name">Your name <span class="req">*</span></label>
+            <input type="text" id="name" name="name"
+                   placeholder="Maria Rodriguez" required>
+          </div>
+
+          <div class="field">
+            <label for="business">Business name <span class="req">*</span></label>
+            <input type="text" id="business" name="business_name"
+                   placeholder="Maria's Nail Studio" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone"
+                   placeholder="(253) 555-0100" required>
+          </div>
+
+          <div class="field">
+            <label>What are you interested in? <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio-item">
+                <input type="radio" name="interest" value="rc_card" required>
+                <div>
+                  <div class="radio-label">Google Review Card</div>
+                  <div class="radio-sub">$40 one time. More reviews, faster.</div>
+                </div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="interest" value="website">
+                <div>
+                  <div class="radio-label">Website Creation</div>
+                  <div class="radio-sub">Starting at $400. Professional and mobile ready.</div>
+                </div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="interest" value="both">
+                <div>
+                  <div class="radio-label">Both</div>
+                  <div class="radio-sub">Reviews and a great website working together.</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">
+            Send My Information
+          </button>
+          <p class="form-note">No obligation. No spam. We will reach out personally.</p>
         </div>
 
-        <div id="form-status" class="form-status" role="alert"></div>
+        <div class="success-msg" id="successMsg">
+          <div class="icon">✅</div>
+          <h3>Got it. We will be in touch.</h3>
+          <p>We received your information and will reach out within one business day.<br>
+          Questions before then? Call or text us at <strong>(425) 494-1518</strong>.</p>
+        </div>
+      </div>
 
-        <form id="lead-form" class="lead-form" novalidate>
-
-          <p class="required-note">Fields marked * are required.</p>
-
-          <div class="field" data-field="name">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" autocomplete="name" required />
-            <span class="field-error"></span>
-          </div>
-
-          <div class="field" data-field="business_name">
-            <label for="business_name">Business Name *</label>
-            <input type="text" id="business_name" name="business_name" autocomplete="organization" required />
-            <span class="field-error"></span>
-          </div>
-
-          <div class="field" data-field="phone">
-            <label for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel" required />
-            <span class="field-error"></span>
-          </div>
-
-          <div class="field" data-field="email">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" autocomplete="email" />
-            <span class="field-error"></span>
-          </div>
-
-          <div class="field" data-field="city">
-            <label for="city">City *</label>
-            <input type="text" id="city" name="city" autocomplete="address-level2" required />
-            <span class="field-error"></span>
-          </div>
-
-          <div class="field" data-field="interest">
-            <label>What are you interested in? *</label>
-            <div class="radio-group">
-              <div class="radio-option">
-                <input type="radio" id="interest-rc" name="interest" value="RC Card" />
-                <label for="interest-rc">RC Card</label>
-              </div>
-              <div class="radio-option">
-                <input type="radio" id="interest-website" name="interest" value="Website" />
-                <label for="interest-website">Website</label>
-              </div>
-              <div class="radio-option">
-                <input type="radio" id="interest-both" name="interest" value="Both" />
-                <label for="interest-both">Both</label>
-              </div>
+      <!-- Side info -->
+      <div class="side-info">
+        <h2>What happens after you submit</h2>
+        <p>We review your information and reach out personally. No bots, no automated sequences.</p>
+        <div class="side-steps">
+          <div class="side-step">
+            <div class="side-step-icon">📞</div>
+            <div class="side-step-text">
+              <strong>We reach out within one business day</strong>
+              A quick call or text to confirm what you need and answer any questions.
             </div>
-            <span class="field-error"></span>
           </div>
-
-          <div class="field" data-field="current_website">
-            <label for="current_website">Current Website URL <span class="hint">(if any)</span></label>
-            <input type="url" id="current_website" name="current_website" autocomplete="url" placeholder="https://" />
-            <span class="field-error"></span>
+          <div class="side-step">
+            <div class="side-step-icon">⚡</div>
+            <div class="side-step-text">
+              <strong>Fast turnaround</strong>
+              Review cards are ready to ship quickly. Websites go from intake to live in under a week for most businesses.
+            </div>
           </div>
-
-          <div class="field" data-field="review_count">
-            <label for="review_count">Approximate Number of Google Reviews <span class="hint">(optional)</span></label>
-            <input type="number" id="review_count" name="review_count" min="0" inputmode="numeric" />
-            <span class="field-error"></span>
+          <div class="side-step">
+            <div class="side-step-icon">📍</div>
+            <div class="side-step-text">
+              <strong>Serving King &amp; Pierce County, WA</strong>
+              Kent, Renton, Tacoma, Bellevue, Federal Way, Auburn, and surrounding areas.
+            </div>
           </div>
-
-          <div class="field" data-field="message">
-            <label for="message">Message <span class="hint">(anything else we should know)</span></label>
-            <textarea id="message" name="message"></textarea>
-            <span class="field-error"></span>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block">Submit</button>
-        </form>
+        </div>
       </div>
+
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
-<footer class="site-footer">
+<footer>
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="logo">2Peak <span>Growth</span></a>
-        <p>Helping local businesses in Kent, Renton, Tacoma, and Bellevue, WA get found, get reviewed, and get chosen.</p>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">2<span>Peak</span> Growth</div>
+        <p class="footer-tagline">
+          Helping local businesses in King &amp; Pierce County grow their
+          online presence. One business at a time.
+        </p>
+        <div class="footer-contact">
+          <a href="tel:4254941518">📞 (425) 494-1518</a>
+          <a href="mailto:2peakgrowth@gmail.com">✉ 2peakgrowth@gmail.com</a>
+          <span style="font-size:13px;color:var(--muted)">📍 King &amp; Pierce County, WA</span>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="start.html">Google Review Card</a></li>
+          <li><a href="start.html">Website Creation</a></li>
           <li><a href="how-it-works.html">How It Works</a></li>
-          <li><a href="start.html">Get Started</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><span class="placeholder">[PHONE]</span></li>
-          <li><span class="placeholder">[EMAIL]</span></li>
-          <li>Kent / Renton / Tacoma / Bellevue, WA</li>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/people/2PeakGrowth/61592983324664/"
+             target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">f</a>
+        </div>
+        <ul class="footer-links" style="margin-top:20px">
+          <li><a href="start.html">Get a Free Assessment</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 2Peak Growth. All rights reserved.</span>
-      <span>Kent · Renton · Tacoma · Bellevue, WA</span>
+      <span class="footer-copy">© 2026 2Peak Growth. King &amp; Pierce County, WA.</span>
+      <span class="footer-copy">Local Businesses · Stronger Communities</span>
     </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const name     = document.getElementById('name').value.trim();
+  const business = document.getElementById('business').value.trim();
+  const phone    = document.getElementById('phone').value.trim();
+  const interest = document.querySelector('input[name="interest"]:checked');
+
+  if (!name || !business || !phone || !interest) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const SUPABASE_URL = 'https://eihxkwbtjwzkadvjkxol.supabase.co';
+  const SUPABASE_KEY = 'REPLACE_WITH_ANON_KEY';
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/web_leads`, {
+      method: 'POST',
+      headers: {
+        'apikey'       : SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type' : 'application/json',
+        'Prefer'       : 'return=minimal',
+      },
+      body: JSON.stringify({
+        name          : name,
+        business_name : business,
+        phone         : phone,
+        interest      : interest.value,
+        source        : 'website',
+      }),
+    });
+
+    if (res.ok) {
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    } else {
+      throw new Error(`Status ${res.status}`);
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Send My Information';
+    alert('Something went wrong. Please call or text us directly at (425) 494-1518.');
+    console.error(err);
+  }
+}
+</script>
 </body>
 </html>
