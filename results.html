@@ -1,83 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Results — 2Peak Growth</title>
-<meta name="description" content="Real results from local businesses using 2Peak Growth — coming soon." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Review growth and website case studies from local businesses working with 2Peak Growth.">
+  <title>Results | 2Peak Growth</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-hero {
+      padding: 140px 0 72px;
+      background: var(--navy-mid);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+    .page-hero p { font-size: 17px; color: var(--muted); max-width: 540px; }
+
+    .pending-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .pending-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .pending-fig {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .pending-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .pending-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    .why-wait {
+      margin-top: 64px;
+      padding: 32px;
+      border-left: 2px solid var(--blue);
+      background: var(--navy-mid);
+      border-radius: 0 12px 12px 0;
+      max-width: 620px;
+    }
+    .why-wait p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+    @media (max-width: 900px) { .pending-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container nav">
-    <a href="index.html" class="logo">2Peak <span>Growth</span></a>
-    <nav aria-label="Primary">
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="start.html" class="btn btn-primary nav-cta">Get Started</a>
-      </div>
-    </nav>
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">2<span>Peak</span> Growth</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="start.html" class="nav-cta">Get Started</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
   </div>
-</header>
+</nav>
 
-<main>
-  <section class="coming-soon">
-    <div class="container">
-      <div class="teaser-box">
-        <div class="teaser-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="5" y="11" width="14" height="9" rx="2"/>
-            <path d="M8 11V8a4 4 0 0 1 8 0v3"/>
-          </svg>
-        </div>
-        <span class="eyebrow">Results</span>
-        <h2>We're building this page with real numbers</h2>
-        <p>Review growth, before-and-afters, and website case studies from local businesses will live here. We're waiting on enough real client data before we publish anything.</p>
-        <a href="start.html" class="btn btn-primary">Get Started Instead</a>
+<div class="page-hero">
+  <div class="container">
+    <div class="section-label">Results</div>
+    <h1>Real numbers, once we have them</h1>
+    <p>
+      This page will show review growth and website case studies from
+      businesses in King &amp; Pierce County. It stays empty until those
+      numbers are ours to show.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-label">What Will Live Here</div>
+    <h2>Three things, measured the same way every time</h2>
+
+    <div class="pending-grid">
+      <div class="pending-card">
+        <div class="pending-fig">01</div>
+        <div class="pending-name">Reviews before and after</div>
+        <p class="pending-desc">
+          Review count on the day a card goes on the counter, and the count
+          ninety days later. Same business, same window, no cherry picking.
+        </p>
+      </div>
+      <div class="pending-card">
+        <div class="pending-fig">02</div>
+        <div class="pending-name">Star rating movement</div>
+        <p class="pending-desc">
+          Where the average sat before and where it settled. More reviews
+          usually means a steadier rating, not just a higher one.
+        </p>
+      </div>
+      <div class="pending-card">
+        <div class="pending-fig">03</div>
+        <div class="pending-name">Website case studies</div>
+        <p class="pending-desc">
+          What the business had before, what we built, and what changed for
+          them afterwards in their own words.
+        </p>
       </div>
     </div>
-  </section>
-</main>
 
-<footer class="site-footer">
+    <div class="why-wait">
+      <p>
+        Plenty of companies fill a page like this with numbers that came from
+        nowhere. We would rather leave it blank until we can point at a real
+        shop in Kent or Renton and show you their actual review history.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="logo">2Peak <span>Growth</span></a>
-        <p>Helping local businesses in Kent, Renton, Tacoma, and Bellevue, WA get found, get reviewed, and get chosen.</p>
+    <h2>Want to be one of the first?</h2>
+    <p>Early clients get featured here when the page opens.</p>
+    <a href="start.html" class="btn-white">Get Started</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">2<span>Peak</span> Growth</div>
+        <p class="footer-tagline">
+          Helping local businesses in King &amp; Pierce County grow their
+          online presence, one business at a time.
+        </p>
+        <div class="footer-contact">
+          <a href="tel:4254941518">📞 (425) 494-1518</a>
+          <a href="mailto:2peakgrowth@gmail.com">✉ 2peakgrowth@gmail.com</a>
+          <span style="font-size:13px;color:var(--muted)">📍 King &amp; Pierce County, WA</span>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="start.html">Google Review Card</a></li>
+          <li><a href="start.html">Website Creation</a></li>
+          <li><a href="start.html">Online Marketing</a></li>
           <li><a href="how-it-works.html">How It Works</a></li>
-          <li><a href="start.html">Get Started</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><span class="placeholder">[PHONE]</span></li>
-          <li><span class="placeholder">[EMAIL]</span></li>
-          <li>Kent / Renton / Tacoma / Bellevue, WA</li>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/people/2PeakGrowth/61592983324664/"
+             target="_blank" rel="noopener" class="social-icon"
+             aria-label="Facebook">f</a>
+        </div>
+        <ul class="footer-links" style="margin-top:20px">
+          <li><a href="start.html">Get a Free Assessment</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 2Peak Growth. All rights reserved.</span>
-      <span>Kent · Renton · Tacoma · Bellevue, WA</span>
+      <span class="footer-copy">© 2026 2Peak Growth. King &amp; Pierce County, WA.</span>
+      <span class="footer-copy">Local Businesses · Stronger Communities</span>
     </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+</script>
+
 </body>
 </html>
