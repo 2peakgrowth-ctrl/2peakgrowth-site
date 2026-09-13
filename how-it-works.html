@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="See exactly how 2Peak Growth works — from first contact to your first new review or a live website.">
-  <title>How It Works — 2Peak Growth</title>
+  <meta name="description" content="See exactly how 2Peak Growth works, from first contact to your first new review, a live website, or a marketing plan.">
+  <title>How It Works | 2Peak Growth</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .process-section { padding: 80px 0; }
     .process-label {
       font-size: 12px;
       font-weight: 600;
@@ -17,17 +16,17 @@
       margin-bottom: 8px;
     }
     .process-title {
-      font-size: clamp(28px, 3vw, 40px);
+      font-size: clamp(22px, 2vw, 26px);
       font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 48px;
+      letter-spacing: -0.5px;
+      margin-bottom: 32px;
     }
     .step-list { display: flex; flex-direction: column; gap: 2px; }
     .step-item {
       display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 24px;
-      padding: 28px 32px 28px 0;
+      grid-template-columns: 32px 1fr;
+      gap: 16px;
+      padding: 22px 0;
       border-bottom: 1px solid var(--border);
       align-items: start;
     }
@@ -39,19 +38,15 @@
       padding-top: 2px;
     }
     .step-body-title {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       margin-bottom: 6px;
+      line-height: 1.35;
     }
     .step-body-desc {
       font-size: 14px;
       color: var(--muted);
       line-height: 1.65;
-    }
-    .process-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
     }
     .page-hero {
       padding: 140px 0 72px;
@@ -69,14 +64,30 @@
       color: var(--muted);
       max-width: 520px;
     }
-    .two-col {
+
+    /* Three services now, so the old two-column split becomes a
+       three-column track. The 80px gutter that worked for two is
+       too wide for three; 48px keeps the columns readable. */
+    .three-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+    .track-price {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue-light);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 1040px) and (min-width: 769px) {
+      .three-col { grid-template-columns: 1fr 1fr; gap: 56px; }
     }
     @media (max-width: 768px) {
-      .two-col { grid-template-columns: 1fr; gap: 48px; }
-      .step-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 24px 0; }
+      .three-col { grid-template-columns: 1fr; gap: 56px; }
+      .step-item { grid-template-columns: 28px 1fr; gap: 14px; padding: 20px 0; }
     }
   </style>
 </head>
@@ -90,7 +101,7 @@
       <li><a href="how-it-works.html">How It Works</a></li>
       <li><a href="start.html" class="nav-cta">Get Started</a></li>
     </ul>
-    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
       <span></span><span></span><span></span>
     </div>
   </div>
@@ -99,17 +110,18 @@
 <div class="page-hero">
   <div class="container">
     <div class="section-label">How It Works</div>
-    <h1>Two services. No confusion<br>about what happens next.</h1>
+    <h1>Three services. No confusion<br>about what happens next.</h1>
     <p>Here is exactly what to expect, from first contact to the finished result.</p>
   </div>
 </div>
 
 <section style="padding: 80px 0; background: var(--navy);">
-  <div class="container two-col">
+  <div class="container three-col">
 
     <div>
       <div class="process-label">Google Review Card</div>
       <div class="process-title">From order to first review</div>
+      <div class="track-price">$40, one time</div>
       <div class="step-list">
         <div class="step-item">
           <div class="step-n">1</div>
@@ -121,7 +133,7 @@
         <div class="step-item">
           <div class="step-n">2</div>
           <div>
-            <div class="step-body-title">You get a tap card programmed to your review page</div>
+            <div class="step-body-title">You get a card programmed to your review page</div>
             <p class="step-body-desc">Your card arrives ready to use. No app, no login, no software. It works the moment you hand it over.</p>
           </div>
         </div>
@@ -129,7 +141,7 @@
           <div class="step-n">3</div>
           <div>
             <div class="step-body-title">Hand it to customers after great service</div>
-            <p class="step-body-desc">One tap on a customer's phone opens your Google review page directly. No searching, no typing your business name.</p>
+            <p class="step-body-desc">A tap on a customer's phone opens your Google review page directly. No searching, no typing your business name.</p>
           </div>
         </div>
         <div class="step-item">
@@ -145,6 +157,7 @@
     <div>
       <div class="process-label">Website Creation</div>
       <div class="process-title">From intake to live site</div>
+      <div class="track-price">Starting at $400</div>
       <div class="step-list">
         <div class="step-item">
           <div class="step-n">1</div>
@@ -157,7 +170,7 @@
           <div class="step-n">2</div>
           <div>
             <div class="step-body-title">We build your site</div>
-            <p class="step-body-desc">Using your intake information, we build a professional, mobile-friendly website tailored to your business. Typically done within 2 to 5 business days.</p>
+            <p class="step-body-desc">Using your intake information, we build a professional, mobile friendly website tailored to your business. Typically done within 2 to 5 business days.</p>
           </div>
         </div>
         <div class="step-item">
@@ -178,7 +191,43 @@
           <div class="step-n">5</div>
           <div>
             <div class="step-body-title">Optional ongoing maintenance</div>
-            <p class="step-body-desc">Need to update hours, swap photos, or add a new service page? We offer flexible maintenance plans so your site stays current without the hassle.</p>
+            <p class="step-body-desc">Need to update hours, swap photos, or add a new service page? Maintenance plans start at $10 a month, or pay $15 per change with no plan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="process-label">Online Marketing</div>
+      <div class="process-title">From conversation to plan</div>
+      <div class="track-price">Scoped to your business</div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-n">1</div>
+          <div>
+            <div class="step-body-title">We look at how people find you now</div>
+            <p class="step-body-desc">What you show up for, what your competitors show up for, and where customers in your area are actually looking. No cost for this part.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-n">2</div>
+          <div>
+            <div class="step-body-title">We tell you what is worth doing</div>
+            <p class="step-body-desc">Sometimes that is a short list. Sometimes it is one thing. If your money is better spent elsewhere, we will say so rather than sell you a package.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-n">3</div>
+          <div>
+            <div class="step-body-title">You get a written quote first</div>
+            <p class="step-body-desc">Scope and price in writing before any work starts. Every business needs something different here, so there is no set rate to quote you blind.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-n">4</div>
+          <div>
+            <div class="step-body-title">We do the work and report back</div>
+            <p class="step-body-desc">You see what was done and what changed, in plain numbers. Nothing runs quietly in the background without you knowing what it cost.</p>
           </div>
         </div>
       </div>
@@ -215,6 +264,7 @@
         <ul class="footer-links">
           <li><a href="start.html">Google Review Card</a></li>
           <li><a href="start.html">Website Creation</a></li>
+          <li><a href="start.html">Online Marketing</a></li>
           <li><a href="how-it-works.html">How It Works</a></li>
         </ul>
       </div>
