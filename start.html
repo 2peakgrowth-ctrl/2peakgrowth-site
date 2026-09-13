@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Get started with 2Peak Growth. Tell us about your business and we will be in touch within one business day.">
-  <title>Get Started — 2Peak Growth</title>
+  <title>Get Started | 2Peak Growth</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     .start-hero {
@@ -131,6 +131,28 @@
       text-align: center;
       margin-top: 16px;
     }
+    /* Error box. The old script used alert(), which looks broken
+       on mobile and gives no way to see the field it refers to. */
+    .form-error {
+      display: none;
+      background: rgba(239,68,68,0.12);
+      border: 1px solid rgba(239,68,68,0.4);
+      color: #FCA5A5;
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    /* Honeypot. Off-screen rather than display:none, because some
+       bots skip hidden inputs but fill positioned ones. */
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
     .success-msg {
       display: none;
       text-align: center;
@@ -190,7 +212,7 @@
       <li><a href="how-it-works.html">How It Works</a></li>
       <li><a href="start.html" class="nav-cta">Get Started</a></li>
     </ul>
-    <div class="nav-hamburger" onclick="toggleNav()">
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
       <span></span><span></span><span></span>
     </div>
   </div>
@@ -211,22 +233,32 @@
       <!-- Form -->
       <div class="form-card">
         <div id="formWrap">
+
+          <div class="form-error" id="formError"></div>
+
           <div class="field">
             <label for="name">Your name <span class="req">*</span></label>
             <input type="text" id="name" name="name"
-                   placeholder="Maria Rodriguez" required>
+                   placeholder="Maria Rodriguez" autocomplete="name" required>
           </div>
 
           <div class="field">
             <label for="business">Business name <span class="req">*</span></label>
             <input type="text" id="business" name="business_name"
-                   placeholder="Maria's Nail Studio" required>
+                   placeholder="Maria's Nail Studio"
+                   autocomplete="organization" required>
           </div>
 
           <div class="field">
             <label for="phone">Phone number <span class="req">*</span></label>
             <input type="tel" id="phone" name="phone"
-                   placeholder="(253) 555-0100" required>
+                   placeholder="(253) 555-0100" autocomplete="tel" required>
+          </div>
+
+          <div class="field">
+            <label for="city">City <span class="req">*</span></label>
+            <input type="text" id="city" name="city"
+                   placeholder="Renton" autocomplete="address-level2" required>
           </div>
 
           <div class="field">
@@ -247,13 +279,26 @@
                 </div>
               </label>
               <label class="radio-item">
+                <input type="radio" name="interest" value="marketing">
+                <div>
+                  <div class="radio-label">Online Marketing</div>
+                  <div class="radio-sub">Scoped to your business. We look first, then quote.</div>
+                </div>
+              </label>
+              <label class="radio-item">
                 <input type="radio" name="interest" value="both">
                 <div>
-                  <div class="radio-label">Both</div>
-                  <div class="radio-sub">Reviews and a great website working together.</div>
+                  <div class="radio-label">Not sure yet</div>
+                  <div class="radio-sub">Or more than one of the above. We will help you figure it out.</div>
                 </div>
               </label>
             </div>
+          </div>
+
+          <div class="hp-field" aria-hidden="true">
+            <label for="company_url">Company website</label>
+            <input type="text" id="company_url" name="company_url"
+                   tabindex="-1" autocomplete="off">
           </div>
 
           <button class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">
@@ -323,6 +368,7 @@
         <ul class="footer-links">
           <li><a href="start.html">Google Review Card</a></li>
           <li><a href="start.html">Website Creation</a></li>
+          <li><a href="start.html">Online Marketing</a></li>
           <li><a href="how-it-works.html">How It Works</a></li>
         </ul>
       </div>
@@ -330,7 +376,8 @@
         <div class="footer-heading">Connect</div>
         <div class="footer-social">
           <a href="https://www.facebook.com/people/2PeakGrowth/61592983324664/"
-             target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">f</a>
+             target="_blank" rel="noopener" class="social-icon"
+             aria-label="Facebook">f</a>
         </div>
         <ul class="footer-links" style="margin-top:20px">
           <li><a href="start.html">Get a Free Assessment</a></li>
@@ -349,32 +396,72 @@ function toggleNav() {
   document.getElementById('navLinks').classList.toggle('open');
 }
 
-async function handleSubmit(e) {
-  e.preventDefault();
+/* ============================================================
+   Lead form
+
+   This is the only form script on the site. js/main.js had a
+   second one bound to #lead-form, which does not exist on any
+   page, so it never ran. That file is deleted.
+
+   The publishable key below is safe in client-side code once
+   schema_v7_security.sql has run: it restricts anon to a single
+   INSERT on web_leads, with no read access at all.
+   ============================================================ */
+
+const SUPABASE_URL = 'https://eihxkwbtjwzkadvjkxol.supabase.co';
+const SUPABASE_KEY = 'PASTE_YOUR_PUBLISHABLE_KEY_HERE';
+
+function showError(msg) {
+  const box = document.getElementById('formError');
+  box.textContent = msg;
+  box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function hideError() {
+  document.getElementById('formError').style.display = 'none';
+}
+
+function succeed() {
+  document.getElementById('formWrap').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function handleSubmit(event) {
+  event.preventDefault();
+  hideError();
 
   const name     = document.getElementById('name').value.trim();
   const business = document.getElementById('business').value.trim();
   const phone    = document.getElementById('phone').value.trim();
-  const interest = document.querySelector('input[name="interest"]:checked');
+  const city     = document.getElementById('city').value.trim();
+  const interest = document.querySelector("input[name='interest']:checked");
+  const trap     = document.getElementById('company_url').value;
 
-  if (!name || !business || !phone || !interest) {
-    alert('Please fill in all required fields.');
+  // Honeypot. Show success and send nothing. A bot that gets an
+  // error retries; one that gets success moves on.
+  if (trap) { succeed(); return; }
+
+  if (!name) { showError('Please enter your name.'); return; }
+  if (!business) { showError('Please enter your business name.'); return; }
+  if (phone.replace(/\D/g, '').length < 10) {
+    showError('Please enter a phone number with at least 10 digits.');
     return;
   }
+  if (!city) { showError('Please enter your city.'); return; }
+  if (!interest) { showError('Please choose what you are interested in.'); return; }
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Sending...';
 
-  const SUPABASE_URL = 'https://eihxkwbtjwzkadvjkxol.supabase.co';
-  const SUPABASE_KEY = 'REPLACE_WITH_ANON_KEY';
-
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/web_leads`, {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/web_leads', {
       method: 'POST',
       headers: {
         'apikey'       : SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
         'Content-Type' : 'application/json',
         'Prefer'       : 'return=minimal',
       },
@@ -382,24 +469,32 @@ async function handleSubmit(e) {
         name          : name,
         business_name : business,
         phone         : phone,
+        city          : city,
         interest      : interest.value,
         source        : 'website',
       }),
     });
 
-    if (res.ok) {
-      document.getElementById('formWrap').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    } else {
-      throw new Error(`Status ${res.status}`);
+    if (res.ok) { succeed(); return; }
+
+    // The rate guard in schema_v7 rejects the same phone twice
+    // inside two minutes. That is nearly always a double tap, so
+    // treat it as success rather than telling someone their
+    // message failed when it did not.
+    if (res.status === 400 || res.status === 409) {
+      const body = await res.text();
+      if (body.indexOf('duplicate submission') !== -1) { succeed(); return; }
     }
+
+    throw new Error('Status ' + res.status);
   } catch (err) {
+    console.error('Lead submission failed:', err);
     btn.disabled = false;
     btn.textContent = 'Send My Information';
-    alert('Something went wrong. Please call or text us directly at (425) 494-1518.');
-    console.error(err);
+    showError('Something went wrong. Please try again, or call or text us at (425) 494-1518.');
   }
 }
 </script>
+
 </body>
 </html>
