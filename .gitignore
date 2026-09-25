@@ -1,0 +1,22 @@
+# Secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+secrets.toml
+
+# Database backups and data exports (contain client data)
+backup/
+supabase-backup-*/
+data.sql
+roles.sql
+*.dump
+*.xlsx
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor noise (Zone.Identifier: added by Windows when files are copied into WSL)
+.DS_Store
+*:Zone.Identifier
